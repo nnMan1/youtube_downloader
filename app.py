@@ -21,7 +21,7 @@ def encryptVizener():
     print(url)
     downloader = YoutubeDownloader()
     downloader.downlaod([url])
-    
+    return downloader.url
 
 @app.route('/decrypt/vizener', methods=['GET'])
 def decryptVizener():

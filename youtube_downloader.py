@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 import youtube_dl
+import os
 
 
 class YoutubeDownloader:
@@ -15,7 +16,7 @@ class YoutubeDownloader:
                 'preferredquality': quality,
             }],
             'progress_hooks': [self.progress_channged],
-            'outtmpl': 'static/out.mp3'
+            'outtmpl': 'static/%(title)s-%(id)s.mp3'
         }
 
         self.downlaoder =  youtube_dl.YoutubeDL(ydl_opts)
@@ -23,7 +24,9 @@ class YoutubeDownloader:
     def progress_channged(self, data):
         
         if data['status'] == 'finished':
-            print("Done downloading ")
+            file_tuple = os.path.split(os.path.abspath(data['filename']))
+            self.url = '/' + data['filename']
+            print("Done downloading {}".format(file_tuple[1]))
         if data['status'] == 'downloading':
             p = data['_percent_str']
             p = p.replace('%','')
