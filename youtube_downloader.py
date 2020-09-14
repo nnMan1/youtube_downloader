@@ -23,7 +23,7 @@ class YoutubeDownloader:
     def progress_channged(self, data):
         
         if data['status'] == 'finished':
-            print("Done downloading {}".format(file_tuple[1]))
+            print("Done downloading ")
         if data['status'] == 'downloading':
             p = data['_percent_str']
             p = p.replace('%','')
